@@ -1,0 +1,49 @@
+
+.track_controls button {
+    background: none;
+    border: none;
+    color: #E2E9EF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
+    width: 20px;
+    height: 25px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0px;
+    font-family: Tahoma;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 1px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 1px 3px rgba(0, 0, 0, 0.1), -2px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.track_controls button img {
+    vertical-align: middle;
+}
+
+
+.track_controls button:not(:first-child) {
+  /*border-left: 1px solid rgba(255, 255, 255, 0.4);*/
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.track_controls button:first-child {
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 1px 3px rgba(0, 0, 0, 0.1), -2px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.track_controls button:last-child {
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.4) inset, 0 1px 3px rgba(0, 0, 0, 0.1), 2px 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.track_controls button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    cursor: pointer;
+    /*box-shadow: 0 0 1px rgba(6, 54, 95, 0.8);*/
+}
+
+.track_controls button:active, .track_controls button.active {
+  border-top: none;
+  background-color: rgba(6, 54, 95, 0.35);
+  box-shadow: 0 0 1px rgba(6, 54, 95, 0.8) inset !important;
+}

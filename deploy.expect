@@ -1,0 +1,126 @@
+set file_owner  owner
+set tomcat_user user
+set tomcat_home /tomcat/home
+set deploy_host deploy-host
+set tomcat_host tomcat-host
+set war_to_deploy /war-to-deploy.war
+set temp_loc user@hostname:/home/user
+set timeout 60
+
+proc ask_password {} {
+    # grab the password
+    stty -echo
+    send_user -- "password:"
+    expect_user -re "(.*)\n"
+    send_user "\n"
+    stty echo
+    return $expect_out(1,string)
+}
+
+set passw [ask_password]
+
+proc control_tomcat {user host tomcat_home action} {
+    # stop tomcat
+    # puts "becoming $user .."
+    send "sudo -H -u $user -s\r"
+    expect "$user@"
+
+    # puts "connecting to $host .."
+    send "ssh $host\r"
+    expect "$user@$host"
+
+    # puts "running $action on tomcat  .."
+    send "$tomcat_home/bin/$action\r"
+    expect "$user@$host"
+
+    if { $action == "stop" } {
+
+        # let tomcat stop
+        puts "wait 10 seconds to let tomcat stop  .."
+        sleep 10
+        
+        # puts "running $action on tomcat  .."
+        send "cd $tomcat_home/webapps\r"
+        expect "$user@$host"
+
+        # puts "running $action on tomcat  .."
+        send "rm -rf webapp\r"
+        expect "$user@$host"
+
+    }
+
+
+    # exit from host
+    # puts "exiting from host $host .."
+    send "logout\r"
+    expect "Connection to $host closed"
+
+    # puts "exiting from user $user .."
+    # exit from user
+    send "exit\r"
+    expect "bash"
+}
+
+proc deploy {user password tomcat_home location war} {
+
+    # 
+    # puts "becoming $user .."
+    send "sudo -H -u $user -s\r"
+    expect "$user@"
+
+    # puts "getting to $tomcat_home .."
+    send "cd $tomcat_home/deploy\r"
+    expect "$user@"
+
+    # puts "copying $war ..\n"
+    send "scp $location/$war . \r"
+
+    set attempt 2
+    while { $attempt > 0 } {
+        expect {
+            "The authenticity of host" { send "yes\r" }
+            "password"                  { send "$password\r" 
+                                          break }
+        }
+        incr attempt -1
+    }
+
+    expect "$user@"
+
+    puts "exiting from $user ..\n"
+    # exit from user
+    send "exit\r"
+    expect "bash"
+}
+
+# send package
+puts "\n\ncopying war ..\n\n"
+spawn scp $war_to_deploy $temp_loc
+expect "password"
+send "$passw\r"
+expect "skynet"
+
+# connect to deploy host
+puts "\n\nconnecting to $deploy_host ..\n\n"
+spawn ssh $deploy_host
+expect "password"
+send "$passw\r"
+expect "bash"
+
+
+# stop tomcat
+puts "\n\nstopping tomcat ..\n\n"
+control_tomcat $tomcat_user $tomcat_host $tomcat_home "stop"
+
+# deploy
+puts "\n\ndeploying ..\n\n"
+deploy $file_owner $passw $tomcat_home $temp_loc [file tail $war_to_deploy]
+
+# start tomcat
+puts "\n\nstarting tomcat ..\n\n"
+control_tomcat $tomcat_user $tomcat_host $tomcat_home "start"
+
+# exit from host
+send "logout\r"
+
+

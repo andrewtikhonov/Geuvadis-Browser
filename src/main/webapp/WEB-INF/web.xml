@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <display-name>Geuvadis DAS Servlet</display-name>
+    <servlet>
+        <servlet-name>MydasServlet</servlet-name>
+        <servlet-class>uk.ac.ebi.mydas.controller.MydasServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EmptyCache</servlet-name>
+        <servlet-class>uk.ac.ebi.mydas.controller.EmptyCache</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MydasServlet</servlet-name>
+        <url-pattern>/das/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>EmptyCache</servlet-name>
+        <url-pattern>/flushcache</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        Normalized
+
+    -->
+
+    <display-name>Normalized</display-name>
+    <servlet>
+        <servlet-name>Normalized</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>normalized.exon.summary.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Normalized</servlet-name>
+        <url-pattern>/normalized</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        CEU.exon.track
+
+    -->
+
+    <display-name>exon.quant.CEU.track=</display-name>
+    <servlet>
+        <servlet-name>exon.quant.CEU.track</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>exon.quant.CEU.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exon.quant.CEU.track</servlet-name>
+        <url-pattern>/exon.quant.ceu</url-pattern>
+    </servlet-mapping>
+
+    <!--
+
+        FIN.exon.track
+
+    -->
+
+    <display-name>exon.quant.FIN.track</display-name>
+    <servlet>
+        <servlet-name>exon.quant.FIN.track</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>exon.quant.FIN.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exon.quant.FIN.track</servlet-name>
+        <url-pattern>/exon.quant.fin</url-pattern>
+    </servlet-mapping>
+
+    <!--
+
+        GBR.exon.track
+
+    -->
+
+    <display-name>exon.quant.GBR.track</display-name>
+    <servlet>
+        <servlet-name>exon.quant.GBR.track</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>exon.quant.GBR.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exon.quant.GBR.track</servlet-name>
+        <url-pattern>/exon.quant.gbr</url-pattern>
+    </servlet-mapping>
+
+    <!--
+
+        TSI.exon.track
+
+    -->
+
+    <display-name>exon.quant.TSI.track</display-name>
+    <servlet>
+        <servlet-name>exon.quant.TSI.track</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>exon.quant.TSI.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exon.quant.TSI.track</servlet-name>
+        <url-pattern>/exon.quant.tsi</url-pattern>
+    </servlet-mapping>
+
+    <!--
+
+        YRI.exon.track
+
+    -->
+
+    <display-name>exon.quant.YRI.track</display-name>
+    <servlet>
+        <servlet-name>exon.quant.YRI.track</servlet-name>
+        <servlet-class>services.servlet.ExonQuantRangeServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>exon.quant.YRI.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exon.quant.YRI.track</servlet-name>
+        <url-pattern>/exon.quant.yri</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        E X O N
+
+    -->
+
+
+    <!--
+        EUR.aggregated.exon
+    -->
+
+    <display-name>EUR.aggregated.exon</display-name>
+    <servlet>
+        <servlet-name>EUR.aggregated.exon</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>EUR.aggregated.exon</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EUR.aggregated.exon</servlet-name>
+        <url-pattern>/exon-aggr-eur</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        YRI.aggregated.exon
+    -->
+
+    <display-name>YRI.aggregated.exon</display-name>
+    <servlet>
+        <servlet-name>YRI.aggregated.exon</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>YRI.aggregated.exon</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>YRI.aggregated.exon</servlet-name>
+        <url-pattern>/exon-aggr-yri</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        M I R N A
+
+    -->
+
+
+    <!--
+        EUR.aggregated.mirna
+    -->
+
+    <display-name>EUR.aggregated.mirna</display-name>
+    <servlet>
+        <servlet-name>EUR.aggregated.mirna</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>EUR.aggregated.mirna</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EUR.aggregated.mirna</servlet-name>
+        <url-pattern>/mirna-aggr-eur</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        YRI.aggregated.mirna
+    -->
+
+    <display-name>YRI.aggregated.mirna</display-name>
+    <servlet>
+        <servlet-name>YRI.aggregated.mirna</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>YRI.aggregated.mirna</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>YRI.aggregated.mirna</servlet-name>
+        <url-pattern>/mirna-aggr-yri</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <!--
+
+        T R A N S C R I P T
+
+    -->
+
+
+    <!--
+        EUR.aggregated.trans
+    -->
+
+    <display-name>EUR.aggregated.trans</display-name>
+    <servlet>
+        <servlet-name>EUR.aggregated.trans</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>EUR.aggregated.trans</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EUR.aggregated.trans</servlet-name>
+        <url-pattern>/trans-aggr-eur</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        YRI.aggregated.trans
+    -->
+
+    <display-name>YRI.aggregated.trans</display-name>
+    <servlet>
+        <servlet-name>YRI.aggregated.trans</servlet-name>
+        <servlet-class>services.servlet.AggregatedRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>YRI.aggregated.trans</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>YRI.aggregated.trans</servlet-name>
+        <url-pattern>/trans-aggr-yri</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--
+
+        Gene track
+
+    -->
+
+    <display-name>Gene.track</display-name>
+    <servlet>
+        <servlet-name>Gene.track</servlet-name>
+        <servlet-class>services.servlet.GeneRangeServlet</servlet-class>
+
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>ensembl.gene.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Gene.track</servlet-name>
+        <url-pattern>/gene</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        Gene Info Servlet
+
+    -->
+
+
+    <display-name>Gene.Info</display-name>
+    <servlet>
+        <servlet-name>Gene.Info</servlet-name>
+        <servlet-class>services.servlet.GeneInfoServlet</servlet-class>
+        <init-param>
+            <param-name>track.name</param-name>
+            <param-value>ensembl.gene.track</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Gene.Info</servlet-name>
+        <url-pattern>/geneinfo</url-pattern>
+    </servlet-mapping>
+
+    <!--
+
+        Snip Info Servlet
+
+    -->
+
+
+    <display-name>Snip.Info</display-name>
+    <servlet>
+        <servlet-name>Snip.Info</servlet-name>
+        <servlet-class>services.servlet.SnipInfoServlet</servlet-class>
+
+        <init-param>
+            <param-name>source.name</param-name>
+            <param-value>SNIP.search.sources</param-value>
+        </init-param>
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Snip.Info</servlet-name>
+        <url-pattern>/snipinfo</url-pattern>
+    </servlet-mapping>
+
+
+    <!--
+
+        fghdfghdfgh
+
+    -->
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Empty Cache</web-resource-name>
+            <url-pattern>/flushcache</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>
+                Role required to allow emptying of the MyDas cache
+                via an http request.
+            </description>
+            <role-name>mydas-admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!--
+       The ability to empty the MyDas cache via HTTP is protected
+       by simple role based security, defined in the security-constraint
+       element above.  You can of course modify
+       or even remove this security constraint. (The latter is not
+       recommended).
+
+       How the role (given here as 'mydas-admin') is granted depends
+       on the type of servlet container you are using to run MyDas
+       and is beyond the scope of these notes - please see your servlet
+       container documentation.
+    -->
+
+    <!-- Security roles referenced by this web application -->
+    <security-role>
+        <description>
+            The role that is required to empty the MyDas cache
+        </description>
+        <role-name>mydas-admin</role-name>
+    </security-role>
+
+    <session-config>
+        <session-timeout>3</session-timeout>
+    </session-config>
+</web-app>
+

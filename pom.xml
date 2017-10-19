@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>geuvadis-das</groupId>
+    <artifactId>geuvadis-das</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <repositories>
+
+        <repository>
+           <id>java.net-maven2-repository</id>
+           <name>java.net-maven2-repository</name>
+           <url>java-net:/maven2-repository/trunk/repository/</url>
+       </repository>
+
+        <repository>
+          <id>maven2-repository.dev.java.net</id>
+          <name>Java.net Repository for Maven</name>
+          <url>http://download.java.net/maven/2/</url>
+        </repository>
+
+        <repository>
+            <id>MyDAS</id>
+            <url>http://mydas.googlecode.com/svn/repository/</url>
+        </repository>
+
+        <repository>
+          <id>developer</id>
+          <name>ArkDB</name>
+          <releases>
+            <enabled>true</enabled>
+            <checksumPolicy>ignore</checksumPolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <url>http://jensembl.sourceforge.net/m2-repo</url>
+          <layout>default</layout>
+        </repository>
+
+        <repository>
+          <id>biojava-maven-repo</id>
+          <name>BioJava repository</name>
+          <url>http://www.biojava.org/download/maven/</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <releases>
+            <enabled>true</enabled>
+            <checksumPolicy>ignore</checksumPolicy>
+          </releases>
+        </repository>
+
+        <repository>
+          <id>central</id>
+          <name>Central Repository</name>
+          <url>http://repo1.maven.org/maven2</url>
+        </repository>
+
+        <repository>
+          <id>mc-release</id>
+          <name>Google Code Repo</name>
+          <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+        </repository>
+
+    </repositories>
+
+
+    <dependencies>
+
+        <dependency>
+          <groupId>uk.ac.roslin</groupId>
+          <artifactId>ensembl-data-access</artifactId>
+          <version>1.12</version>
+        </dependency>
+
+        <dependency>
+          <groupId>uk.ac.roslin</groupId>
+          <artifactId>ensembl-config</artifactId>
+          <version>1.67.1</version>
+        </dependency>
+
+        <!--  Gson: Java to Json conversion -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>1.7.2</version> <!-- 2.2.2 -->
+            <scope>compile</scope>
+        </dependency>
+
+        <!--dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency-->
+
+        <dependency>
+            <groupId>uk.ac.ebi.mydas</groupId>
+            <artifactId>mydas</artifactId>
+            <version>1.6.1_j5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.9</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency> <!-- this will allow redirection of java.util.logging calls via slf4j -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency> <!-- native slf4j api for own application logging -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <dependency> <!-- log4j binding: all logging captured via slf4j sinks to log4j -->
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.5.6</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency> <!-- log4j itself (note the runtime scope) -->
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency> <!-- this is for all those frameworks that use commons-logging. log4j will be capturing those -->
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <finalName>geuvadis-das-web</finalName>
+    </build>
+
+</project>
